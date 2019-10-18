@@ -68,7 +68,7 @@ func badFeedback(message string, txn newrelic.Transaction) (bool, float64) {
 
 func pushToNR(tweet anaconda.Tweet, score float64, txn newrelic.Transaction) {
 	log.Println("recording an event to New Relic Insights")
-	defer newrelic.StartSegment(txn, "RecordeCustomEvent").End()
+	defer newrelic.StartSegment(txn, "recordCustomEvent").End()
 	err := app.RecordCustomEvent("BadFeedback", map[string]interface{}{
 		"Source":      "Twitter",
 		"message":     tweet.FullText,
